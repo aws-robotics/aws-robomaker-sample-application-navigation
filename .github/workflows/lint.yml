@@ -1,0 +1,26 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+name: "Lint navigation-sample-application-ros1"
+on:
+  pull_request:
+
+jobs:
+  ament_lint:
+    runs-on: ubuntu-latest
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-focal-ros-rolling-ros-base-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        linter: [flake8, pep257, xmllint, copyright]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ros-tooling/action-ros-lint@v0.1
+        with:
+          distribution: rolling
+          linter: ${{ matrix.linter }}
+          package-name: |
+            aws_robomaker_simulation_common
+            navigation_simulation
+            navigation_robot

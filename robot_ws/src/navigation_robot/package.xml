@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>navigation_robot</name>
+  <version>1.0.0</version>
+  <description>
+  AWS RoboMaker robot package that provides a sample application for navigation with ROS.
+  </description>
+  <license>MIT</license>
+  <author email="ros-contributions@amazon.com">AWS RoboMaker</author>
+  <maintainer email="ros-contributions@amazon.com">AWS RoboMaker</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>roscpp</depend>
+
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_export_depend>message_runtime</build_export_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <!-- Turtlebot -->
+  <depend>turtlebot3_msgs</depend>
+  <depend>robot_state_publisher</depend>
+  
+  <exec_depend>turtlebot3_bringup</exec_depend>
+  <!-- Required to install .rviz model-->
+  <depend>turtlebot3_description</depend>
+  <!-- Required for navigation-specific .rviz model-->
+  <depend>turtlebot3_navigation</depend>
+
+  <depend>turtlebot3_description_reduced_mesh</depend>
+</package>

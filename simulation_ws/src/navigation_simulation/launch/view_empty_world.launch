@@ -1,0 +1,10 @@
+<!--
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: MIT-0
+-->
+<launch>
+  <!-- View helper launches the GUI -->
+  <include file="$(find navigation_simulation)/launch/empty_world.launch">
+    <arg name="gui" value="true"/>
+  </include>
+</launch>

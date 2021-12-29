@@ -1,0 +1,37 @@
+<!--
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: MIT-0
+-->
+<launch>
+  <!--
+        Launch command for a Turtlebot to await commands with monitoring enabled.
+
+        Use this with bookstore_turtlebot_navigation for routing though 
+        the bookstore. Or use with remote steering via RQT or RViz 
+        launchers or on the terminal with turtlebot3_teleop. 
+  -->
+
+  <!-- 
+       Using simulation time means nodes initialized after this
+       will not use the system clock for its ROS clock and 
+       instead wait for simulation ticks. 
+
+       See http://wiki.ros.org/Clock
+
+       Note: set to false for deploying to a real robot.
+  -->
+  <arg name="use_sim_time" default="true"/>
+  <param name="use_sim_time" value="$(arg use_sim_time)"/>
+
+  <!-- Optional environment variable, default is "waffle_pi". Note that "burger" does not have a camera -->
+  <arg name="model" default="$(optenv TURTLEBOT3_MODEL waffle_pi)" doc="model type [burger, waffle, waffle_pi]"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description_reduced_mesh)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+  <!-- Enable Monitoring -->
+  <include file="$(find navigation_robot)/launch/monitoring.launch"/>
+
+  <!-- Publisher robot state for robot transforms -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen"/>
+
+  <!-- Do nothing, await Goal Commands from simulation -->
+</launch>
